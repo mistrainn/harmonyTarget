@@ -1,0 +1,71 @@
+{
+  // Template file. Populate with your own signing material before building.
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "debug",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/ABSOLUTE/PATH/TO/DEBUG_CERT.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "<DEBUG_KEY_PASSWORD>",
+          "profile": "/ABSOLUTE/PATH/TO/DEBUG_PROFILE.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/ABSOLUTE/PATH/TO/DEBUG_STORE.p12",
+          "storePassword": "<DEBUG_STORE_PASSWORD>"
+        }
+      },
+      {
+        "name": "release",
+        "type": "HarmonyOS",
+        "material": {
+          "storeFile": "/ABSOLUTE/PATH/TO/RELEASE_STORE.p12",
+          "storePassword": "<RELEASE_STORE_PASSWORD>",
+          "keyAlias": "release",
+          "keyPassword": "<RELEASE_KEY_PASSWORD>",
+          "signAlg": "SHA256withECDSA",
+          "profile": "/ABSOLUTE/PATH/TO/RELEASE_PROFILE.p7b",
+          "certpath": "/ABSOLUTE/PATH/TO/RELEASE_CERT.cer"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "release",
+        "targetSdkVersion": "5.1.1(19)",
+        "compatibleSdkVersion": "5.0.5(17)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "nativeCompiler": "BiSheng",
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

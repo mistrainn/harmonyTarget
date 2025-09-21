@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "应用描述"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NsfocusVuln"
+    },
+    {
+      "name": "secret_ability_label",
+      "value": "Secret Page"
+    },
+    {
+      "name": "sensitive_action_label",
+      "value": "执行敏感操作"
+    },
+    {
+      "name": "sensitive_action_desc",
+      "value": "允许应用执行内部的敏感操作"
+    },
+    {
+      "name": "secret_Unprotected_Ability_label",
+      "value": "Unprotected Ability"
+    },
+    {
+      "name": "secret_protected_Ability_label",
+      "value": "Protected Ability"
+    }
+  ]
+}

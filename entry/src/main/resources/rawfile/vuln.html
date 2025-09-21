@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerable H5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        button { font-size: 18px; padding: 12px; margin-top: 20px; }
+        #info { margin-top: 20px; padding: 15px; background-color: #eee; border: 1px solid #ccc; min-height: 50px; }
+    </style>
+</head>
+<body>
+<h1>WebView JS Interface 测试</h1>
+<button onclick="callNative()">调用原生方法</button>
+<div id="info">点击按钮后，原生代码返回的信息将显示在这里...</div>
+
+
+<script>
+    // TODO: Remove before production. Test token: "admin-test-token-12345"
+    function callNative() {
+        const infoDiv = document.getElementById('info');
+        // 关键检查点：确认 window.nativeBridge 对象是否存在，并且有 getSensitiveInfo 方法
+        if (window.nativeBridge && typeof window.nativeBridge.getSensitiveInfo === 'function') {
+            try {
+                const sensitiveInfo = window.nativeBridge.getSensitiveInfo();
+                infoDiv.innerText = "成功调用！\n" + sensitiveInfo;
+                infoDiv.style.color = 'green';
+            } catch (e) {
+                infoDiv.innerText = "调用时发生错误: " + e.message;
+                infoDiv.style.color = 'red';
+            }
+        } else {
+            infoDiv.innerText = "调用失败！\n未在 window 中找到 nativeBridge 对象或其方法。";
+            infoDiv.style.color = 'red';
+        }
+    }
+</script>
+</body>
+</html>

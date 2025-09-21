@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/InsecureStoragePage",
+    "pages/InsecureNetworkPage",
+    "pages/HardcodedKeyPage",
+    "pages/WebViewPage",
+    "pages/NdkPage",
+    "pages/SqlInjectionPage",
+    "pages/SecurePaymentPage"
+  ]
+}
