@@ -9,7 +9,4 @@ This project intentionally ships without real signing material. To build or publ
 3. Before running a build, either:
    - overwrite `build-profile.json5` with your local values, or
    - maintain a script that swaps the files as part of your build pipeline.
-4. Never commit or publish real certificate files (`.p12`, `.p7b`, `.cer`) with the project. Store them securely (for example in a password manager or CI secret store).
-
-> Tip: when preparing a release build for GitHub, double check with `rg '/Users/'` or similar to ensure no absolute paths or personal identifiers remain.
 
