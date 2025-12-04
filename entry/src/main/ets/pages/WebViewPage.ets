@@ -17,7 +17,12 @@ struct WebViewPage {
 
   aboutToAppear() {
     try {
+      // VULNERABILITY: 向全部页面暴露原生对象
       this.webviewController.registerJavaScriptProxy(new JsBridge(), 'nativeBridge', ['*']);
+      // Secure version (示例): 仅在可信域名时注册，并限制方法白名单
+      // if (this.urlInput.startsWith('https://trusted.example.com')) {
+      //   this.webviewController.registerJavaScriptProxy(new JsBridge(), 'nativeBridge', ['getSensitiveInfo']);
+      // }
     } catch (error) {
       const err = error as BusinessError;
       console.error(`registerJavaScriptProxy failed, code is ${err.code}, message is ${err.message}`);
@@ -34,19 +39,26 @@ struct WebViewPage {
           .layoutWeight(1)
         Button('加载')
           .onClick(() => {
-            // VULNERABILITY: 未对URL进行任何校验，直接加载
+            // VULNERABILITY: 未校验 URL，直接加载
             this.webviewController.loadUrl(this.urlInput);
+            // Secure version (示例): 验证协议/域名，仅允许 https 白名单
+            // if (this.urlInput.startsWith('https://trusted.example.com')) {
+            //   this.webviewController.loadUrl(this.urlInput);
+            // }
           })
       }.width('90%').padding({ bottom: 10 })
 
       Web({ src: $rawfile('vuln.html'), controller: this.webviewController })
         .javaScriptAccess(true)
         .onControllerAttached(() => {
+          // VULNERABILITY: 注册 JS 桥接供任意页面调用
           this.webviewController.registerJavaScriptProxy(
             new JsBridge(),
             'nativeBridge',
             ['getSensitiveInfo']   // 方法名写全
           );
+          // Secure version (示例): 仅对受信页面开放或使用域名校验
+          // if (this.webviewController.getHitTest() === 'https://trusted.example.com') { ... }
         })
         .layoutWeight(1)
 

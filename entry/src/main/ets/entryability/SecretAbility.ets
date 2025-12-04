@@ -3,15 +3,14 @@ import window from '@ohos.window';
 
 export default class SecretAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    // 设置UI加载
-    windowStage.loadContent('pages/SecretPage', (err, data) => {
-      // 在这里可以处理加载错误
+    windowStage.loadContent('pages/SecretPage', (err) => {
+      if (err?.code) {
+        console.error(`Failed to load secret page: ${JSON.stringify(err)}`);
+      }
     });
   }
 }
 
-// SecretPage.ets
-// 为了简单，我们把页面也定义在这里。实际项目中应分开。
 @Component
 struct SecretPage {
   build() {

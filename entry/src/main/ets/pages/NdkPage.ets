@@ -79,7 +79,7 @@ struct NdkPage {
       Button('从.so文件获取密钥')
         .onClick(() => {
           try {
-            // 2. 调用NAPI函数
+            // VULNERABILITY: 密钥硬编码在 .so 中
             this.nativeKey = entry.getSecretKeyFromNative();
             this.errorMessage = '';
           } catch (error) {
@@ -87,6 +87,10 @@ struct NdkPage {
             this.errorMessage = `错误: ${error}`;
           }
         })
+      // Secure version (示例): 将密钥存入系统 KeyStore，并按需解密/拉取
+      // .onClick(async () => {
+      //   this.nativeKey = await keyStore.get('secure_key_alias');
+      // })
 
       Text('从原生库获取到的密钥是:')
       Text(this.nativeKey)

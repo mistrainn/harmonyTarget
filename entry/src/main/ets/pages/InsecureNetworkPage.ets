@@ -8,8 +8,9 @@ struct InsecureNetworkPage {
 
   fetchDataOverHttp() {
     this.responseText = '请求中...';
-    // VULNERABILITY: 使用 HTTP 而不是 HTTPS
+    // VULNERABILITY: 使用 HTTP 明文传输
     const url = 'http://httpbin.org/get?param=sensitive_data'; // 若设备无法直连，可改成 http://example.com
+    // Secure version (示例): const url = 'https://api.example.com/secure'; 并配置证书校验/Pinning
     const httpRequest = http.createHttp();
     httpRequest.request(url, { method: http.RequestMethod.GET, readTimeout: 5000 }, (err, data) => {
       if (err) {

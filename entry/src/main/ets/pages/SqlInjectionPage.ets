@@ -64,6 +64,11 @@ struct SqlInjectionPage {
       }
       this.searchResult = resultStr;
       resultSet.close();
+
+      // Secure version (示例): 使用参数化查询避免注入
+      // const stmt = await this.store.prepare(`SELECT * FROM ${TABLE_NAME} WHERE name = ?`);
+      // const safeResult = await stmt.executeQuery([this.searchName]);
+      // stmt.close();
     } catch (e) {
       this.searchResult = `查询失败: ${JSON.stringify(e)}`;
       hilog.error(0x0001, TAG, `查询失败: ${JSON.stringify(e)}`);

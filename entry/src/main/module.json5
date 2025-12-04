@@ -36,7 +36,8 @@
         "srcEntry": "./ets/entryability/SecretAbility.ets",
         "description": "Exported Secret Ability",
         "label": "$string:secret_ability_label",
-        "exported": true, // <-- 漏洞点：组件被导出
+        "exported": true, // 漏洞：组件被导出
+        // Secure version (示例): "exported": false, 或限制 skills/权限验证后再暴露
         "launchType": "standard",
         "startWindowIcon": "$media:icon",
         "startWindowBackground":  "$color:start_window_background"
@@ -47,6 +48,7 @@
         "description": "Handles implicit Want and leaks extras",
         "label": "$string:EntryAbility_label",
         "exported": true,
+        // Secure version (示例): 指定权限或校验调用方，或设置 exported 为 false 并仅内部调用
         "launchType": "standard",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",

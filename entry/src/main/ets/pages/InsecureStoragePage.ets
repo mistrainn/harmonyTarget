@@ -11,18 +11,24 @@ struct InsecureStoragePage {
 
   async onSaveClick() {
     try {
-      // 1. 获取Preferences实例
       const pref = await dataPreferences.getPreferences(this.context, 'vuln_credential');
 
-      // 2. VULNERABILITY: 明文存储用户名和密码
+      // VULNERABILITY: 明文存储用户名和密码
       await pref.put('username', this.username);
       await pref.put('password', this.password);
-      await pref.flush(); // 确保存储
+      await pref.flush();
 
-      // 3. VULNERABILITY: 在日志中明文打印敏感信息
+      // VULNERABILITY: 在日志中明文打印敏感信息
       hilog.error(0x0001, 'VULN_APP_LOG', 'Insecure Logging: User %{public}s password is %{public}s', this.username, this.password);
       const fakeSessionToken = 'Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6InRlc3R1c2VyIn0.fake_signature';
       hilog.error(0x0001, 'VULN_APP_LOG', 'Login success for %{public}s, password: %{public}s, session: %{public}s', this.username, this.password, fakeSessionToken);
+
+      // Secure version (示例): 使用加密存储 + 不打印敏感信息
+      // const encPref = await dataPreferences.getPreferences(this.context, 'secure_credential');
+      // await encPref.put('username', encrypt(this.username));
+      // await encPref.put('password', encrypt(this.password));
+      // await encPref.flush();
+      // hilog.info(0x0001, 'SAFE_LOG', 'Login success for %{private}s', this.username);
 
       promptAction.showToast({ message: '凭据已明文保存，并已打印到日志' });
     } catch (e) {

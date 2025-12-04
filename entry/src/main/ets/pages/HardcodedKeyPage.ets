@@ -8,6 +8,8 @@ struct HardcodedKeyPage {
   private readonly MAP_API_KEY = "AKfj-s93f_thisIsAFakeBaiduMapKey";
   @State plainText: string = 'Hello HarmonyOS';
   @State encryptedText: string = '';
+  // Secure version (示例): 将密钥存入 Keystore 或后端下发，代码不直接存储明文 key
+  // private async getKeyFromKeystore(): Promise<string> { return await keyStore.get('MAP_API_KEY'); }
 
   // 简单的异或加密算法，用于演示
   xorEncrypt(input: string, key: string): string {
@@ -30,6 +32,11 @@ struct HardcodedKeyPage {
           this.encryptedText = this.xorEncrypt(this.plainText, this.SECRET_KEY);
           promptAction.showToast({ message: '加密完成' });
         })
+      // Secure version (示例): 使用系统加密框架 + 动态密钥
+      // .onClick(async () => {
+      //   const safeKey = await this.getKeyFromKeystore();
+      //   this.encryptedText = await systemCrypto.encrypt(this.plainText, safeKey);
+      // })
 
       Text('加密结果:')
       Text(this.encryptedText).fontColor(Color.Red)

@@ -41,8 +41,6 @@ struct Index {
             .onClick(() => {
               if (item.targetPage === '#') {
                 this.showDialog('组件暴露漏洞说明', '本应用内有一个名为 SecretAbility 的隐藏页面已被导出。请使用 hdc 命令尝试拉起它：\n\naa start -b com.example.vulnerableappdemo -a SecretAbility');
-              } else if (item.targetPage === '##') {
-                this.showDialog('后台Socket监听说明', '应用已在后台启动TCP服务，监听9999端口。\n请使用 adb forward tcp:9999 tcp:9999 转发端口，然后用 nc localhost 9999 连接并发送指令 (如 GET_DEVICE_INFO)。');
               } else {
                 router.pushUrl({ url: item.targetPage });
               }

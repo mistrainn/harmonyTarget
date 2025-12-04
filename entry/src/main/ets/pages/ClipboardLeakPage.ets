@@ -46,6 +46,7 @@ struct ClipboardLeakPage {
     if (this.pollTimer !== -1) {
       return;
     }
+    // VULNERABILITY: 后台轮询剪贴板，未经用户授权
     this.pushLog('开始后台轮询剪贴板（无用户感知）...');
     this.pollTimer = setInterval(() => {
       this.readClipboardOnce();
@@ -93,6 +94,12 @@ struct ClipboardLeakPage {
         Button('停止监听')
           .onClick(() => this.stopSniff())
       }.padding({ top: 12, bottom: 12 })
+      // Secure version (示例): 仅在用户明确触发时读取剪贴板，并及时清空
+      // Button('读取一次并清空')
+      //   .onClick(async () => {
+      //     const data = await this.systemPasteboard.getData();
+      //     await this.systemPasteboard.clear();
+      //   })
 
       Column({ space: 6 }) {
         Text(`最近一次读取：${this.lastSeen}`).fontSize(14).fontColor(Color.Red)

@@ -20,6 +20,15 @@ struct ImplicitHijackPage {
       }
     };
   }
+  // Secure version (示例): 显式指定 bundle/ability 或使用权限校验
+  // private buildSecureWant(): Want {
+  //   return {
+  //     bundleName: 'com.example.vulnerableappdemo',
+  //     abilityName: 'SecureReceiverAbility',
+  //     action: IMPLICIT_ACTION,
+  //     parameters: { ... }
+  //   };
+  // }
 
   private startImplicitShare() {
     const ctx = getContext(this) as common.UIAbilityContext;
