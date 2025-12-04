@@ -20,7 +20,9 @@ struct Index {
     { title: '5. SO原生库漏洞', description: '密钥硬编码在.so文件中', targetPage: 'pages/NdkPage' },
     { title: '6. SQLite SQL注入', description: 'SQL查询语句拼接用户输入', targetPage: 'pages/SqlInjectionPage' },
     { title: '7. 模拟支付', description: '防截屏、安全键盘等', targetPage: 'pages/SecurePaymentPage' },
-    { title: '8. 导出的组件 (页面劫持)', description: '一个包含敏感信息的页面被导出', targetPage: '#' }
+    { title: '8. 导出的组件 (页面劫持)', description: '一个包含敏感信息的页面被导出', targetPage: '#' },
+    { title: '9. 隐式 Want 泄露与劫持', description: '未绑定包名的隐式Want被任意App截获', targetPage: 'pages/ImplicitHijackPage' },
+    { title: '10. 剪贴板劫持', description: '后台轮询剪贴板窃取敏感信息', targetPage: 'pages/ClipboardLeakPage' }
   ];
 
   build() {
@@ -38,7 +40,7 @@ struct Index {
             }
             .onClick(() => {
               if (item.targetPage === '#') {
-                this.showDialog('组件暴露漏洞说明', '本应用内有一个名为 SecretAbility 的隐藏页面已被导出。请使用 adb 命令尝试拉起它：\n\naa start -b com.example.harmonyvulnerabledemo -a SecretAbility');
+                this.showDialog('组件暴露漏洞说明', '本应用内有一个名为 SecretAbility 的隐藏页面已被导出。请使用 hdc 命令尝试拉起它：\n\naa start -b com.example.vulnerableappdemo -a SecretAbility');
               } else if (item.targetPage === '##') {
                 this.showDialog('后台Socket监听说明', '应用已在后台启动TCP服务，监听9999端口。\n请使用 adb forward tcp:9999 tcp:9999 转发端口，然后用 nc localhost 9999 连接并发送指令 (如 GET_DEVICE_INFO)。');
               } else {

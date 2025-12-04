@@ -12,3 +12,5 @@
 /.appanalyzer
 # Local signing material
 build-profile.local.json5
+build-profile.json5
+AGENTS.md

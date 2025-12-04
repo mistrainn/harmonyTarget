@@ -7,6 +7,9 @@
     "pages/WebViewPage",
     "pages/NdkPage",
     "pages/SqlInjectionPage",
-    "pages/SecurePaymentPage"
+    "pages/SecurePaymentPage",
+    "pages/ImplicitHijackPage",
+    "pages/ClipboardLeakPage",
+    "pages/ImplicitHijackReceiver"
   ]
 }

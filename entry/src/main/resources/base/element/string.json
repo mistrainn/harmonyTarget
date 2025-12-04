@@ -13,6 +13,10 @@
       "value": "NsfocusVuln"
     },
     {
+      "name": "permission_read_pasteboard_reason",
+      "value": "演示剪贴板被动窃取风险，需要读取剪贴板内容用于教学"
+    },
+    {
       "name": "secret_ability_label",
       "value": "Secret Page"
     },

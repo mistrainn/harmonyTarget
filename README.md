@@ -34,7 +34,7 @@
 
 - DevEco Studio 5.0 及以上（HarmonyOS NEXT 工具链）
 - DevEco Studio 自带的 Node.js / Hvigor 工具
-- HarmonyOS NEXT 真机或模拟器，API ≥ 19（5.1.1）
+- HarmonyOS NEXT 真机或模拟器，API ≥ 17（5.0.5）
 
 ## 签名说明
 
@@ -50,4 +50,3 @@
 ## 免责声明
 
 本项目面向实验室、培训和 CTF 等学习场景。作者不对滥用带来的任何后果负责。在测试第三方软件时请遵循负责任的披露原则。
-

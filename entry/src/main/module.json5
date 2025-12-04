@@ -40,12 +40,45 @@
         "launchType": "standard",
         "startWindowIcon": "$media:icon",
         "startWindowBackground":  "$color:start_window_background"
+      },
+      {
+        "name": "LeakyImplicitAbility",
+        "srcEntry": "./ets/entryability/LeakyImplicitAbility.ets",
+        "description": "Handles implicit Want and leaks extras",
+        "label": "$string:EntryAbility_label",
+        "exported": true,
+        "launchType": "standard",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "com.example.SECRET_SHARE"
+            ],
+            "entities": [
+              "entity.system.default"
+            ]
+          }
+        ]
       }
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.INTERNET" // <-- 漏洞点：请求网络权限以使用HTTP
+        "name": "ohos.permission.INTERNET"
       }
+      // 剪贴板窃取演示原计划需要 READ_PASTEBOARD（system_basic 级别，user_grant，需 ACL 申请）。
+      // 为避免 normal 等级安装失败，权限暂注释，功能仅保留界面演示。
+      // ,
+      // {
+      //   "name": "ohos.permission.READ_PASTEBOARD",
+      //   "reason": "$string:permission_read_pasteboard_reason",
+      //   "usedScene": {
+      //     "abilities": [
+      //       "EntryAbility"
+      //     ],
+      //     "when": "inuse"
+      //   }
+      // }
     ]
   }
 }
