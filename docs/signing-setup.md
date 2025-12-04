@@ -1,12 +1,12 @@
-# Signing Setup
+# 签名配置指引
 
-This project intentionally ships without real signing material. To build or publish your own HAP you *must* provide personal certificates locally.
+项目不包含任何真实签名材料，构建/发布需使用你的本地证书与 profile。
 
-## Steps
+## 配置步骤
 
-1. Copy `build-profile.json5` to `build-profile.local.json5` and fill in the absolute paths and passwords to your own certificates, OR reuse the prepared `build-profile.local.json5` kept on your machine.
-2. Keep `build-profile.local.json5` outside of version control (it's already listed in `.gitignore`).
-3. Before running a build, either:
-   - overwrite `build-profile.json5` with your local values, or
-   - maintain a script that swaps the files as part of your build pipeline.
-
+1. 将根目录的 `build-profile.json5` 复制为 `build-profile.local.json5`，在副本中填写你的证书、密钥库、profile 的绝对路径和密码。
+2. `build-profile.local.json5` 已加入 `.gitignore`，确保不要提交到版本库。
+3. 构建前的常见做法：
+   - 直接在 `build-profile.local.json5` 中维护个人配置，并在本地脚本中引用；或
+   - 用脚本在构建前临时覆盖 `build-profile.json5`，构建后恢复。
+4. 仅在本地机器存放证书，避免通过仓库、IM、邮件等渠道分发。

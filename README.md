@@ -14,14 +14,17 @@
 - 字符串拼接导致的 SQLite SQL 注入
 - 模拟安全支付流程：截屏、防窥、输入保护等场景演练
 - 导出的 `SecretAbility` 页面可被外部组件直接拉起
+- 隐式 Want 泄露/劫持：未绑定包名组件被任意 App 截获
+- 剪贴板后台轮询窃取（权限因等级限制默认不申请，保留 UI 演示）
 
 ## 项目结构
 
 ```
 ├── AppScope/app.json5        # 全局应用信息
 ├── entry/                    # 主模块
-│   ├── src/main/ets/pages/   # 各漏洞示例页面
+│   ├── src/main/ets/pages/   # 各漏洞示例页面（HTTP/SQL注入/硬编码/隐式Want/剪贴板等）
 │   ├── src/main/resources/   # UI 资源
+│   ├── src/main/ets/entryability/ # 主/导出/隐式 Want 能力
 │   ├── build-profile.json5   # （模板）构建配置
 │   └── hvigorfile.ts         # 模块级构建脚本
 ├── docs/signing-setup.md     # 本地签名材料操作指南
@@ -46,6 +49,13 @@
 - 通过代理劫持 HTTP 流量，观察未加密通信的风险。
 - 在 SQLite 演示页面输入 SQL 注入 payload，体验攻击链。
 - 使用 `aa start -b com.example.vulnerableappdemo -a SecretAbility` 手动拉起导出的能力，理解组件暴露问题。
+- 隐式 Want 演示：若无第三方匹配组件，会降级显式拉起本应用；安装自定义“攻击者” HAP 可真实劫持。
+- 剪贴板演示：界面保留轮询逻辑，READ_PASTEBOARD 属 system_basic（需 ACL），默认不申请以便 normal APL 安装。
+
+## 演示截图（占位）
+- 隐式 Want 劫持：`docs/screenshots/implicit-want.png`（运行后替换）
+- 剪贴板窃取：`docs/screenshots/clipboard-leak.png`
+- 导出组件拉起：`docs/screenshots/exported-secret-ability.png`
 
 ## 免责声明
 
