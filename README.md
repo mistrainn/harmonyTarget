@@ -1,4 +1,4 @@
-# VulnerableAppDemo21
+# harmonyTarget
 
 一个专为安全培训打造的 HarmonyOS NEXT 示范应用。项目刻意实现了多种常见的移动端安全漏洞，用来演示在 ArkTS 代码中漏洞是如何产生、如何被发现以及潜在的风险点。
 
@@ -52,10 +52,15 @@
 - 隐式 Want 演示：若无第三方匹配组件，会降级显式拉起本应用；安装自定义“攻击者” HAP 可真实劫持。
 - 剪贴板演示：界面保留轮询逻辑，READ_PASTEBOARD 属 system_basic（需 ACL），默认不申请以便 normal APL 安装。
 
-## 演示截图（占位）
-- 隐式 Want 劫持：`docs/screenshots/implicit-want.png`（运行后替换）
-- 剪贴板窃取：`docs/screenshots/clipboard-leak.png`
-- 导出组件拉起：`docs/screenshots/exported-secret-ability.png`
+## 演示截图
+- 主界面: <img width="287" height="620" alt="image" src="https://github.com/user-attachments/assets/fadd11d4-695f-43a7-b311-98382817fdf6" />
+
+- 隐式 Want 劫持：<img width="285" height="470" alt="image" src="https://github.com/user-attachments/assets/cb3d55b2-d43d-4565-839d-f34236525399" />
+
+- so原生密钥+SM4 加密：<img width="280" height="599" alt="image" src="https://github.com/user-attachments/assets/5dcbdeca-c9b2-441c-bb49-541179f9548f" />
+
+- sql 注入漏洞：<img width="740" height="331" alt="image" src="https://github.com/user-attachments/assets/9aef3d8b-3c52-4a97-bd19-51a912e3f45b" />
+
 
 ## 免责声明
 
